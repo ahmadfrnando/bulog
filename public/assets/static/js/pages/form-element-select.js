@@ -1,6 +1,7 @@
 let choices = document.querySelectorAll(".choices")
 let initChoice
 for (let i = 0; i < choices.length; i++) {
+  // if(choices[i].classList.contains('choices__input')) continue
   if (choices[i].classList.contains("multiple-remove")) {
     initChoice = new Choices(choices[i], {
       delimiter: ",",
