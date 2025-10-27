@@ -268,6 +268,33 @@ function initializeDataTable(tableSelector, ajaxRoute, columnsConfig) {
   return table;
 }
 
+function initializeDataTableWithSelectFilter(tableSelector, ajaxRoute, columnsConfig, selectFilter) {
+  var table = $(tableSelector).DataTable({
+    destroy: true,
+    responsive: true,
+    processing: true,
+    serverSide: true,
+    ajax: {
+            url: ajaxRoute,
+            data: function (d) {
+                d.data = $(selectFilter).val() || '';
+            }
+        },
+    columns: columnsConfig,
+    language: {
+      url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Indonesian.json', // CDN Bahasa Indonesia
+    }
+  });
+
+  // Custom pagination icons
+  table.on('draw', function() {
+    $('#DataTables_Table_0_previous a').html('<i class="ni ni-bold-left"></i>');
+    $('#DataTables_Table_0_next a').html('<i class="ni ni-bold-right"></i>');
+  });
+
+  return table;
+}
+
 function updateStatusAjax(url, table, status) {
     Swal.fire({
         title: 'Apakah anda yakin?',
@@ -304,6 +331,25 @@ function updateStatusAjax(url, table, status) {
         e.preventDefault();
     });
 }
+
+function updateStatusAjaxV2(url, table) {
+  return $.ajax({
+    url: url,
+    method: 'PUT',
+    dataType: 'json',
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  })
+  .done(function (response) {
+    // reload tanpa reset halaman/pagination
+    if (table && table.ajax) table.ajax.reload(null, false);
+  })
+  .fail(function (xhr) {
+    Swal.fire('Gagal', xhr.responseJSON?.message || 'Terjadi kesalahan.', 'error');
+  });
+}
+
 
 
  function capitalizeWords(input) {

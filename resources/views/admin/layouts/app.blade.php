@@ -44,9 +44,15 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('admin.penugasan-pasar.index') }}" class="{{ request()->is('admin/penugasan-pasar*') ? 'active' : '' }}">
                     <i class="fas fa-clipboard-list"></i>
                     <span>Penugasan Pasar</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.komoditas.index') }}" class="{{ request()->is('admin/komoditas*') ? 'active' : '' }}">
+                    <i class="fas fa-list"></i>
+                    <span>Komoditas</span>
                 </a>
             </li>
             <li>
