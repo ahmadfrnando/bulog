@@ -56,6 +56,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('admin.submisi-harga.index') }}" class="{{ request()->is('admin/submisi-harga*') ? 'active' : '' }}">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Submisi Harga</span>
+                </a>
+            </li>
+            <li>
                 <a href="javascript:void(0)" onclick="logoutUser()">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Logout</span>

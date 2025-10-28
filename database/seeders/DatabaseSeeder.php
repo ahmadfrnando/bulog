@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
             TokoSeeder::class,
             PenugasanPasarSeeder::class,
             KomoditasSeeder::class,
+            SubmisiHargaSeeder::class,
+            SubmisiHargaStatusSeeder::class
         ]);
     }
 }

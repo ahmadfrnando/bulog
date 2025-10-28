@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\KomoditasController;
 use App\Http\Controllers\Admin\PasarController;
 use App\Http\Controllers\Admin\PenugasanPasarController;
 use App\Http\Controllers\Admin\PetugasController;
+use App\Http\Controllers\Admin\SubmisiHargaController;
 use App\Http\Controllers\Admin\TokoController;
 use App\Http\Controllers\AjaxLoadController;
 use App\Http\Controllers\AuthController;
@@ -41,7 +42,10 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     Route::resource('pasar.toko', TokoController::class);
     Route::resource('penugasan-pasar', PenugasanPasarController::class);
     Route::resource('komoditas', KomoditasController::class);
-    Route::put('/komoditas/{komoditas}/status', [KomoditasController::class, 'status'])->name('komoditas.status');
+    Route::resource('submisi-harga', SubmisiHargaController::class);
+    Route::put('submisi-harga/{submisi_harga}/status', [SubmisiHargaController::class, 'updateStatus'])->name('submisi-harga.status');
+    Route::get('submisi-harga/{submisi_harga}/riwayat-status', [SubmisiHargaController::class, 'getRiwayatStatus'])
+        ->name('submisi-harga.riwayat');
 });
 Route::middleware(['auth', 'role:petugas'])->name('petugas.')->prefix('petugas')->group(function () {
     Route::get('/dashboard', [PetugasDashboardController::class, 'index'])->name('dashboard');
