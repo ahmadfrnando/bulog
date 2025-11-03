@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\RekapitulasiHarian;
 use App\Models\SubmisiHarga;
+use App\Observers\RekapitulasiHarianObserver;
 use App\Observers\SubmisiHargaObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -28,6 +30,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         SubmisiHarga::observe(SubmisiHargaObserver::class);
+        RekapitulasiHarian::observe(RekapitulasiHarianObserver::class);
     }
 
     /**

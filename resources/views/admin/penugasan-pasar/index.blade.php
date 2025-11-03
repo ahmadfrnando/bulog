@@ -23,6 +23,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Tanggal</th>
                         <th>Nama Petugas</th>
                         <th>Nama Pasar</th>
                         <th>Tipe Pasar</th>
@@ -48,6 +49,15 @@
                 className: 'w-8 text-center text-sm',
                 orderable: false,
                 searchable: false
+            },
+            {
+                data: 'tanggal',
+                name: 'tanggal',
+                orderable: true,
+                searchable: true,
+                render: function(data, type, row) {
+                    return moment(data).locale('id').format('ll') ?? '-';
+                }
             },
             {
                 data: 'user.name',

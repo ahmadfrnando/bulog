@@ -17,18 +17,16 @@ return new class extends Migration
             $table->string('nama_petugas');
             $table->unsignedBigInteger('pasar_id');
             $table->string('nama_pasar');
-            $table->unsignedBigInteger('toko_id');
             $table->string('nama_toko');
             $table->unsignedBigInteger('komoditas_id');
             $table->string('nama_komoditas');
             $table->decimal('harga', 10, 2);
             $table->string('unit')->nullable();
             $table->date('tanggal_observasi');
-            $table->time('waktu_observasi');
             $table->text('url_foto')->nullable();
             $table->text('catatan')->nullable();
             $table->enum('status', ['dikirim', 'diterbitkan', 'ditandai', 'ditolak', 'dikoreksi'])->default('dikirim');
-            $table->date('tanggal_validasi');
+            $table->date('tanggal_validasi')->nullable();
             $table->timestamps();
         });
     }

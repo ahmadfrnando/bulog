@@ -24,15 +24,11 @@ class SubmisiHargaRequest extends FormRequest
         return [
             'user_id' => 'required|exists:users,id',
             'pasar_id' => 'required|exists:pasar,id',
-            'toko_id' => 'required|exists:toko,id',
+            'nama_toko' => 'required|string',
             'komoditas_id' => 'required|exists:komoditas,id',
             'harga' => 'required|numeric',
             'tanggal_observasi' => 'required|date',
-            'waktu_observasi' => 'required|date_format:H:i',
-            'url_foto' => 'nullable|url',
             'catatan' => 'nullable',
-            'status' => 'required|in:dikirim,diterbitkan,ditandai,ditolak,dikoreksi',
-            'tanggal_validasi' => 'required|date',
         ];
     }
 
@@ -43,20 +39,14 @@ class SubmisiHargaRequest extends FormRequest
             'user_id.exists' => 'Petugas tidak ditemukan.',
             'pasar_id.required' => 'Pasar harus dipilih.',
             'pasar_id.exists' => 'Pasar tidak ditemukan.',
-            'toko_id.required' => 'Toko harus dipilih.',
-            'toko_id.exists' => 'Toko tidak ditemukan.',
+            'nama_toko.required' => 'Nama toko harus diisi.',
             'komoditas_id.required' => 'Komoditas harus dipilih.',
             'komoditas_id.exists' => 'Komoditas tidak ditemukan.',
             'harga.required' => 'Harga harus diisi.',
             'harga.numeric' => 'Harga harus berupa angka.',
             'tanggal_observasi.required' => 'Tanggal observasi harus dipilih.',
             'tanggal_observasi.date' => 'Format tanggal observasi tidak valid.',
-            'waktu_observasi.required' => 'Waktu observasi harus dipilih.',
-            'waktu_observasi.date_format' => 'Format waktu observasi tidak valid.',
-            'url_foto.url' => 'URL foto tidak valid.',
             'catatan.required' => 'Catatan harus diisi.',
-            'status.required' => 'Status harus dipilih.',
-            'status.in' => 'Status tidak valid.',
         ];
     }
 }

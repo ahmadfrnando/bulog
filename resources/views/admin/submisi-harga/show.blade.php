@@ -295,6 +295,7 @@
     </div>
 
     <!-- Status Update Section -->
+     @if($submisi_harga->status != 'diterbitkan')
     <div class="detail-card">
         <div class="card-header-custom">
             <h5>
@@ -327,6 +328,7 @@
             </div>
         </div>
     </div>
+    @endif
 
     <div class="row">
         <!-- Left Column -->
@@ -414,8 +416,6 @@
                                 </div>
                                 <div class="info-value">
                                     {{ \Carbon\Carbon::parse($submisi_harga->tanggal_observasi)->locale('id_ID')->formatLocalized('%A, %d %B %Y') }}
-                                    <br>
-                                    <small class="text-muted">Pukul {{ \Carbon\Carbon::parse($submisi_harga->waktu_observasi)->format('H:i \\G\\M\\T') }}</small>
                                 </div>
                             </div>
                         </div>

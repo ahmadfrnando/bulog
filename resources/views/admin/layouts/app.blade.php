@@ -62,6 +62,18 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('admin.rekapitulasi-harian.index') }}" class="{{ request()->is('admin/rekapitulasi-harian*') ? 'active' : '' }}">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Rekapitulasi Harian</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.rekapitulasi-bulanan.index') }}" class="{{ request()->is('admin/rekapitulasi-bulanan*') ? 'active' : '' }}">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Rekapitulasi Bulanan</span>
+                </a>
+            </li>
+            <li>
                 <a href="javascript:void(0)" onclick="logoutUser()">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Logout</span>

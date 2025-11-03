@@ -26,7 +26,7 @@ class SubmisiHargaController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     $urlShow = route('admin.submisi-harga.show', $row->id);
-                    $btn = '<a href="' . $urlShow . '" class="me-2 btn btn-sm btn-outline-primary">Detail</a>';
+                    $btn = '<a href="' . $urlShow . '" class="me-2 btn btn-sm btn-outline-success">Detail</a>';
                     return
                         '<div class="d-flex align-items-center">' .
                         $btn .

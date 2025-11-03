@@ -20,7 +20,6 @@ class SubmisiHargaFactory extends Factory
     public function definition(): array
     {   
         $pasar = Pasar::findOrFail(1);
-        $toko = $pasar->toko()->first();
         $komoditas = Komoditas::findOrFail(1);
         $user = User::findOrFail(2);
         return [
@@ -28,14 +27,12 @@ class SubmisiHargaFactory extends Factory
             'nama_petugas' => $user->name,
             'pasar_id' => $pasar->id,
             'nama_pasar' => $pasar->nama,
-            'toko_id' => $toko->id,
-            'nama_toko' => $toko->nama_toko,
+            'nama_toko' => $this->faker->company(),
             'komoditas_id' => $komoditas->id,
             'unit' => $komoditas->unit,
             'nama_komoditas' => $komoditas->nama,
             'harga' => $this->faker->randomFloat(2, 0, 1000),
             'tanggal_observasi' => $this->faker->date(),
-            'waktu_observasi' => $this->faker->time(),
             'url_foto' => $this->faker->imageUrl(),
             'catatan' => $this->faker->sentence(),
             'status' => $this->faker->randomElement(['dikirim', 'diterbitkan', 'ditandai', 'ditolak', 'dikoreksi']),

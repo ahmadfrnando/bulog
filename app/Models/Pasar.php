@@ -21,9 +21,4 @@ class Pasar extends Model
         }
         return null;
     }
-
-    public function toko()
-    {
-        return $this->hasMany(Toko::class);
-    }
 }

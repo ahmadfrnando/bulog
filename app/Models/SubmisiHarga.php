@@ -15,17 +15,12 @@ class SubmisiHarga extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function pasar()
     {
         return $this->belongsTo(Pasar::class);
-    }
-
-    public function toko()
-    {
-        return $this->belongsTo(Toko::class);
     }
 
     public function komoditas()

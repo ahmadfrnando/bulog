@@ -219,7 +219,7 @@ function logoutUser() {
         text: "Anda akan keluar dari aplikasi!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
+        confirmButtonColor: '#2d5a3d',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Ya, keluar!'
     }).then((result) => {

@@ -23,10 +23,16 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin'
         ]);
 
+        \App\Models\User::factory()->create([
+            'name' => 'petugas',
+            'username' => 'petugas',
+            'password' => bcrypt('123'),
+            'role' => 'petugas'
+        ]);
+
         $this->call([
             UserSeeder::class,
             PasarSeeder::class,
-            TokoSeeder::class,
             PenugasanPasarSeeder::class,
             KomoditasSeeder::class,
             SubmisiHargaSeeder::class,
