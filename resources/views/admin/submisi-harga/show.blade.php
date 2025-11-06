@@ -416,6 +416,7 @@
                                 </div>
                                 <div class="info-value">
                                     {{ \Carbon\Carbon::parse($submisi_harga->tanggal_observasi)->locale('id_ID')->formatLocalized('%A, %d %B %Y') }}
+
                                 </div>
                             </div>
                         </div>

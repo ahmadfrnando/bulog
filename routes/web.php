@@ -14,6 +14,7 @@ use App\Http\Controllers\Petugas\UserController as PetugasUserController;
 use App\Http\Controllers\AjaxLoadController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Petugas\DashboardController as PetugasDashboardController;
+use App\Http\Controllers\Petugas\RiwayatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,4 +57,5 @@ Route::middleware(['auth', 'role:petugas'])->name('petugas.')->prefix('petugas')
     Route::get('/dashboard', [PetugasDashboardController::class, 'index'])->name('dashboard');
     Route::put('/ubah-password', [PetugasUserController::class, 'ubahPassword'])->name('user.change-password');
     Route::resource('submisi-harga', PetugasSubmisiHargaController::class);
+    Route::resource('riwayat', RiwayatController::class);
 });

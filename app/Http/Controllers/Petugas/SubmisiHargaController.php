@@ -9,6 +9,7 @@ use App\Models\Pasar;
 use App\Models\SubmisiHarga;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SubmisiHargaController extends Controller
 {
@@ -32,10 +33,9 @@ class SubmisiHargaController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(SubmisiHargaRequest $request)
-    {   
+    {
         $validatedData = $request->validated();
         try {
-
             $user = User::where('id', $validatedData['user_id'])->first();
             $pasar = Pasar::where('id', $validatedData['pasar_id'])->first();
             $komoditas = Komoditas::where('id', $validatedData['komoditas_id'])->first();
@@ -49,7 +49,13 @@ class SubmisiHargaController extends Controller
             $validatedData['nama_komoditas'] = $komoditas->nama;
             $validatedData['unit'] = $komoditas->unit;
 
-            $submisiHarga = SubmisiHarga::create($validatedData);
+            DB::transaction(function () use ($validatedData, &$submisiHarga) {
+                $submisiHarga = SubmisiHarga::create($validatedData);
+                $submisiHarga->submisi_harga_status()->create([
+                    'nama_status' => 'dikirim',
+                    'alasan' => null
+                ]);
+            });
 
             if ($submisiHarga) {
                 return redirect()->route('petugas.dashboard')->with('success', 'Data berhasil disimpan');
