@@ -138,7 +138,7 @@
                             alt="Foto Bukti Harga"
                             class="photo-preview">
                         <div class="mt-3">
-                            <a href="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=1200"
+                            <a href="{{ asset('storage/' . $riwayat->url_foto) }}"
                                 target="_blank"
                                 class="btn btn-action btn-correct">
                                 <i class="fas fa-expand"></i>

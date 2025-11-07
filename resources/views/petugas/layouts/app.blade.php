@@ -149,6 +149,15 @@
                 }
             });
         });
+
+        setTimeout(function() {
+            const alert = document.getElementById('alert-custom');
+            if (alert) {
+                alert.style.transition = 'opacity 0.5s ease';
+                alert.style.opacity = '0';
+                setTimeout(() => alert.remove(), 500); // hapus dari DOM setelah fade out
+            }
+        }, 3000); // ganti 3000 ke waktu yang kamu mau (ms)
     </script>
 </body>
 

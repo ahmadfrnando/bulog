@@ -15,14 +15,14 @@
     </div>
 </div>
 @if (session('success'))
-<div class="alert alert-success-custom alert-custom">
+<div id="alert-custom" class="alert alert-success-custom alert-custom">
     <i class="fas fa-info-circle me-2"></i>
     <strong>Success:</strong> {{ session('success') }}
 </div>
 @endif
 
 @if (session('error'))
-<div class="alert alert-danger-custom alert-custom">
+<div id="alert-custom" class="alert alert-danger-custom alert-custom">
     <i class="fas fa-info-circle me-2"></i>
     <strong>Error:</strong> {{ session('error') }}
 </div>
@@ -53,6 +53,7 @@
                     <span class="required-star">*</span>
                 </label>
                 <select class="form-select" name="pasar_id" required>
+                    <option value="" disabled selected>-- Pilih Pasar --</option>
                     @foreach ($pasars as $pasar)
                     <option value="{{ $pasar->id }}" {{ old('pasar_id') == $pasar->id ? 'selected' : '' }}>{{ $pasar->nama }}</option>
                     @endforeach
@@ -84,6 +85,7 @@
                     <span class="required-star">*</span>
                 </label>
                 <select class="form-select" name="komoditas_id" required>
+                    <option value="" disabled selected>-- Pilih Komoditas --</option>
                     @foreach ($komoditas as $komoditas)
                     <option value="{{ $komoditas->id }}" {{ old('komoditas_id') == $komoditas->id ? 'selected' : '' }}>{{ $komoditas->nama }}</option>
                     @endforeach

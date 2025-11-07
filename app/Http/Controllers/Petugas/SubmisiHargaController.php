@@ -36,19 +36,24 @@ class SubmisiHargaController extends Controller
     {
         $validatedData = $request->validated();
         try {
-            $user = User::where('id', $validatedData['user_id'])->first();
-            $pasar = Pasar::where('id', $validatedData['pasar_id'])->first();
-            $komoditas = Komoditas::where('id', $validatedData['komoditas_id'])->first();
+            $user = User::find($validatedData['user_id'])->name;
+            $pasar = Pasar::find($validatedData['pasar_id'])->nama;
+            $komoditas = Komoditas::find($validatedData['komoditas_id'])->first();
 
             if (!$user || !$pasar || !$komoditas) {
                 throw new \Exception('Data tidak ditemukan');
             }
 
-            $validatedData['nama_petugas'] = $user->name;
-            $validatedData['nama_pasar'] = $pasar->nama;
+            $validatedData['nama_petugas'] = $user;
+            $validatedData['nama_pasar'] = $pasar;
             $validatedData['nama_komoditas'] = $komoditas->nama;
             $validatedData['unit'] = $komoditas->unit;
-
+            if ($request->hasFile('url_foto')) {
+                $imageName = time() . '.' . $request->url_foto->extension();
+                $request->url_foto->storeAs('foto-bukti', $imageName, 'public');
+                $validatedData['url_foto'] = 'foto-bukti/' . $imageName;
+            }
+            $submisiHarga = null;
             DB::transaction(function () use ($validatedData, &$submisiHarga) {
                 $submisiHarga = SubmisiHarga::create($validatedData);
                 $submisiHarga->submisi_harga_status()->create([
